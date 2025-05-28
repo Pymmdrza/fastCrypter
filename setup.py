@@ -23,7 +23,7 @@ if requirements_file.exists():
 
 setup(
     name="fastcrypter",
-    version="2.0.9",
+    version="2.3.0",
     author="Mmdrza",
     author_email="pymmdrza@gmail.com",
     description="Professional compression and encryption library with native C/C++ acceleration",

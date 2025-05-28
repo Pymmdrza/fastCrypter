@@ -10,7 +10,7 @@ Version: 2.0.0
 License: MIT
 """
 
-__version__ = "2.0.9"
+__version__ = "2.3.0"
 __author__ = "Mmdrza"
 __email__ = "pymmdrza@gmail.com"
 __license__ = "MIT"
