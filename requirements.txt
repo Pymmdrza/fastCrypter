@@ -9,10 +9,6 @@ brotli
 argon2-cffi
 bcrypt
 
-# Secure random and utilities
-secrets
-hashlib
-
 # Performance and optimization
 numpy
 cython
