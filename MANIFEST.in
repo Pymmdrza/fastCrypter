@@ -1,0 +1,41 @@
+# Include documentation files
+include README.md
+include LICENSE
+include CHANGELOG.md
+include PLANNING.md
+include TASK.md
+
+# Include requirements
+include requirements.txt
+
+# Include native library source files
+recursive-include fastcrypt/native *.c *.cpp *.h *.hpp
+include fastcrypt/native/Makefile
+
+# Include compiled native libraries (if they exist)
+recursive-include fastcrypt/native/libs *.so *.dll *.dylib
+
+# Include examples
+recursive-include examples *.py *.md
+
+# Include tests
+recursive-include tests *.py
+
+# Include documentation
+recursive-include docs *.md *.rst *.txt
+
+# Include GitHub workflows
+recursive-include .github *.yml *.yaml
+
+# Exclude unnecessary files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.tmp
+global-exclude *.temp
+global-exclude .vscode
+global-exclude .cursor
+global-exclude .idea 
