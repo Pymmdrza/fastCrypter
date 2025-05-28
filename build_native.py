@@ -20,8 +20,8 @@ class NativeLibraryBuilder:
     def __init__(self):
         """Initialize the builder."""
         self.project_root = Path(__file__).parent
-        self.native_dir = self.project_root / 'encrypter' / 'native'
-        self.libs_dir = self.project_root / 'encrypter' / 'libs'
+        self.native_dir = self.project_root / 'fastcrypt' / 'native'
+        self.libs_dir = self.native_dir / 'libs'
         self.platform = self._detect_platform()
         self.platform_dir = self.libs_dir / self.platform
         
