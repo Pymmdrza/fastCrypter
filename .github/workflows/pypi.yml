@@ -1,6 +1,5 @@
 name: fastCrypter Package
 
-
 on:
   push:
     branches: [ "main" ]
