@@ -3,10 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
-*.so
-*.dll
-*.dylib
 
 # Distribution / packaging
 .Python
@@ -26,7 +22,6 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -170,12 +165,6 @@ cython_debug/
 
 # Cursor
 .cursor/
-
-# FastCrypt specific
-# Compiled native libraries (will be built during CI/CD)
-fastcrypt/native/libs/*/lib*.so
-fastcrypt/native/libs/*/lib*.dll
-fastcrypt/native/libs/*/lib*.dylib
 
 # Test files
 test_*.txt
