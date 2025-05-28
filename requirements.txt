@@ -1,0 +1,33 @@
+# Core cryptography libraries
+cryptography
+pycryptodome
+
+# Compression libraries
+brotli
+# Password hashing
+argon2-cffi
+bcrypt
+
+# Secure random and utilities
+secrets
+hashlib
+
+# Performance and optimization
+numpy
+cython
+
+# Development and testing
+pytest
+pytest-cov
+pytest-benchmark
+black
+flake8
+mypy
+
+# Documentation
+sphinx
+sphinx-rtd-theme
+
+# Optional: For advanced features
+psutil
+tqdm   # Progress bars 
