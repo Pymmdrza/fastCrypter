@@ -1,33 +1,45 @@
 # Core cryptography libraries
-cryptography
-pycryptodome
+cryptography>=41.0.0
+pycryptodome>=3.19.0
 
 # Compression libraries
-brotli
+brotli>=1.1.0
+lzma>=0.0.1  # Built-in Python module
+
 # Password hashing
-argon2-cffi
-bcrypt
+argon2-cffi>=23.1.0
+bcrypt>=4.1.0
 
 # Secure random and utilities
-secrets
-hashlib
+secrets>=1.0.0  # Built-in Python module
+hashlib>=1.0.0  # Built-in Python module
 
 # Performance and optimization
-numpy
-cython
+numpy>=1.24.0
+cython>=3.0.0
+
+# C/C++ extension building (optional)
+setuptools>=65.0.0
+wheel>=0.38.0
 
 # Development and testing
-pytest
-pytest-cov
-pytest-benchmark
-black
-flake8
-mypy
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-benchmark>=4.0.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0
 
 # Documentation
-sphinx
-sphinx-rtd-theme
+sphinx>=7.1.0
+sphinx-rtd-theme>=1.3.0
 
 # Optional: For advanced features
-psutil
-tqdm   # Progress bars 
+psutil>=5.9.0  # Memory monitoring
+tqdm>=4.66.0   # Progress bars
+
+# Build tools for C/C++ extensions
+# Note: These require a C/C++ compiler to be installed
+# Windows: Visual Studio Build Tools or MinGW
+# Linux: gcc/g++
+# macOS: Xcode Command Line Tools 

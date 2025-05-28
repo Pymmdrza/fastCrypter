@@ -1,47 +1,35 @@
 #!/usr/bin/env python3
 """
-Setup script for Encrypter package.
-Professional compression and encryption library.
+Setup script for FastCrypt package.
 """
 
 from setuptools import setup, find_packages
-import os
+from pathlib import Path
 
 # Read README file
-def read_readme():
-    """Read README.md file for long description."""
-    with open("README.md", "r", encoding="utf-8") as fh:
-        return fh.read()
+readme_file = Path(__file__).parent / "README.md"
+long_description = readme_file.read_text(encoding="utf-8") if readme_file.exists() else ""
 
 # Read requirements
-def read_requirements():
-    """Read requirements.txt file."""
-    with open("requirements.txt", "r", encoding="utf-8") as fh:
-        return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
-
-# Package metadata
-PACKAGE_NAME = "encrypter"
-VERSION = "1.0.0"
-AUTHOR = "Mmdrza"
-AUTHOR_EMAIL = "pymmdrza@gmail.com"
-DESCRIPTION = "Professional compression and encryption library"
-URL = "https://github.com/pymmdrza/encrypter"
+requirements_file = Path(__file__).parent / "requirements.txt"
+requirements = []
+if requirements_file.exists():
+    requirements = requirements_file.read_text(encoding="utf-8").strip().split('\n')
+    requirements = [req.strip() for req in requirements if req.strip() and not req.startswith('#')]
 
 setup(
-    name=PACKAGE_NAME,
-    version=VERSION,
-    author=AUTHOR,
-    author_email=AUTHOR_EMAIL,
-    description=DESCRIPTION,
-    long_description=read_readme(),
+    name="fastcrypt",
+    version="2.0.0",
+    author="Mmdrza",
+    author_email="pymmdrza@gmail.com",
+    description="Professional compression and encryption library with native C/C++ acceleration",
+    long_description=long_description,
     long_description_content_type="text/markdown",
-    url=URL,
+    url="https://github.com/Pymmdrza/fastcrypt",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
-        "Intended Audience :: Information Technology",
-        "Intended Audience :: System Administrators",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
@@ -53,17 +41,9 @@ setup(
         "Topic :: Security :: Cryptography",
         "Topic :: System :: Archiving :: Compression",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Utilities",
     ],
     python_requires=">=3.8",
-    install_requires=[
-        "cryptography",
-        "pycryptodome",
-        "brotli",
-        "argon2-cffi",
-        "bcrypt",
-        "numpy",
-    ],
+    install_requires=requirements,
     extras_require={
         "dev": [
             "pytest>=7.4.0",
@@ -77,32 +57,33 @@ setup(
             "sphinx>=7.1.0",
             "sphinx-rtd-theme>=1.3.0",
         ],
-        "performance": [
+        "native": [
+            "numpy>=1.24.0",
             "cython>=3.0.0",
-            "psutil>=5.9.0",
-            "tqdm>=4.66.0",
+        ]
+    },
+    entry_points={
+        "console_scripts": [
+            "fastcrypt=fastcrypt.cli:main",
         ],
     },
     include_package_data=True,
-    zip_safe=False,
+    package_data={
+        "fastcrypt": [
+            "native/libs/*/*.so",
+            "native/libs/*/*.dll", 
+            "native/libs/*/*.dylib",
+            "*.md",
+        ],
+    },
     keywords=[
-        "encryption",
-        "compression",
-        "security",
-        "cryptography",
-        "aes",
-        "chacha20",
-        "rsa",
-        "zlib",
-        "lzma",
-        "brotli",
-        "privacy",
-        "data-protection",
+        "encryption", "compression", "security", "cryptography",
+        "aes", "chacha20", "rsa", "zlib", "lzma", "brotli",
+        "native", "performance", "c++", "custom-encoding", "fast"
     ],
     project_urls={
-        "Bug Reports": f"{URL}/issues",
-        "Source": URL,
-        "Documentation": f"{URL}/docs",
-        "Funding": f"{URL}/sponsors",
+        "Bug Reports": "https://github.com/Pymmdrza/fastcrypt/issues",
+        "Source": "https://github.com/Pymmdrza/fastcrypt",
+        "Documentation": "https://fastcrypt.readthedocs.io/",
     },
 ) 
