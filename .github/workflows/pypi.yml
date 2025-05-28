@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 name: fastCrypter Package
-=======
-name: fastCrypt Package
->>>>>>> effea408f2558a5fdf88636391c048f9d0af520d
+
 
 on:
   push:
@@ -33,11 +30,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> effea408f2558a5fdf88636391c048f9d0af520d
     - name: Lint with flake8
       run: |
         pip install flake8
@@ -47,11 +40,7 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-<<<<<<< HEAD
 
-=======
-   
->>>>>>> effea408f2558a5fdf88636391c048f9d0af520d
     if: github.event_name == 'workflow_dispatch'
 
     steps:
@@ -89,12 +78,8 @@ jobs:
         git diff --staged --quiet || git commit -m "🔖 Bump version [automated]"
         git push origin main
 
-<<<<<<< HEAD
     - name: Build fastCrypter Package
-=======
-    - name: Build fastCrypt Package
->>>>>>> effea408f2558a5fdf88636391c048f9d0af520d
-      run: |
+
         python setup.py sdist bdist_wheel
 
       env:
