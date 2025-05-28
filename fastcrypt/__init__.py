@@ -1,5 +1,5 @@
 """
-🚀 FastCrypt - Professional Compression and Encryption Library
+🚀 fastCrypter - Professional Compression and Encryption Library
 
 A powerful Python package for secure data compression and encryption
 using modern cryptographic algorithms and compression techniques with
@@ -105,13 +105,13 @@ if NATIVE_SUPPORT:
 
 # Package metadata
 PACKAGE_INFO = {
-    "name": "fastcrypt",
+    "name": "fastCrypter",
     "version": __version__,
     "description": "Professional compression and encryption library with native C/C++ acceleration",
     "author": __author__,
     "email": __email__,
     "license": __license__,
-    "url": "https://github.com/Pymmdrza/fastcrypt",
+    "url": "https://github.com/Pymmdrza/fastCrypter",
     "keywords": [
         "encryption", "compression", "security", "cryptography",
         "aes", "chacha20", "rsa", "zlib", "lzma", "brotli",
@@ -278,8 +278,8 @@ def _show_startup_info():
     
     # Only show in debug mode or if explicitly requested
     import os
-    if os.environ.get('FASTCRYPT_SHOW_INFO', '').lower() in ('1', 'true', 'yes'):
-        print(f"🚀 FastCrypt v{__version__} loaded with: {', '.join(features)}")
+    if os.environ.get('fastCrypter_SHOW_INFO', '').lower() in ('1', 'true', 'yes'):
+        print(f"🚀 fastCrypter v{__version__} loaded with: {', '.join(features)}")
 
 # Show startup info if requested
 _show_startup_info() 

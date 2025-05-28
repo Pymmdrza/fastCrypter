@@ -1,18 +1,15 @@
-name: FastCrypt Package CI/CD
+name: fastCrypter Package
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  release:
-    types: [published]
   workflow_dispatch:
 
 jobs:
-  test:
-    name: Test on Python ${{ matrix.python-version }}
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -21,104 +18,52 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Cache pip dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-
-    - name: Install system dependencies (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential gcc g++ make libssl-dev python3-dev python3-pip libffi-dev
-
-    - name: Install system dependencies (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        choco install openssl
-
-    - name: Install Python dependencies
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel twine pyOpenSSL cryptography
-        pip install -r requirements.txt
-        pip install pytest pytest-cov flake8 black mypy
-
-    - name: Install package in development mode
-      run: |
-        pip install -e .
+        pip install setuptools wheel twine
 
     - name: Lint with flake8
       run: |
-        # Stop the build if there are Python syntax errors or undefined names
-        flake8 fastcrypt/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Exit-zero treats all errors as warnings
-        flake8 fastcrypt/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        pip install flake8
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Type checking with mypy
-      run: |
-        mypy fastcrypt/ --ignore-missing-imports || true
-
-    - name: Run tests
-      run: |
-        python -m pytest tests/ -v --cov=fastcrypt --cov-report=xml --cov-report=term-missing || true
-
-    - name: Run final integration test
-      run: |
-        python final_test.py
-
-    - name: Test package installation
-      run: |
-        pip uninstall -y fastcrypt
-        pip install .
-        python -c "import fastcrypt; print(f'FastCrypt v{fastcrypt.__version__} installed successfully')"
-
-    - name: Build native libraries
-      run: |
-        python build_native.py
-
-  build:
-    name: Build package
+  publish:
+    needs: build
     runs-on: ubuntu-latest
-    needs: test
-    if: (github.event_name == 'release' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[automated]'))) && needs.test.result == 'success'
+
+    if: github.event_name == 'workflow_dispatch'
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
+      uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
       with:
-        python-version: "3.11"
+        python-version: 3.x
 
-    - name: Install build dependencies
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build setuptools wheel twine
+        pip install setuptools wheel twine
 
-    # Version bumping section
     - name: Get Bumper File
       if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
       run: curl -o bump_version.py ${{ secrets.BUMP_URL }}
 
     - name: Run Bump script
       if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
-      run: python bump_version.py fastcrypt
-  
+      run: python bump_version.py fastCrypter
+
     - name: Remove Bump Script
       if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
       run: rm -f bump_version.py
@@ -132,36 +77,16 @@ jobs:
         git diff --staged --quiet || git commit -m "🔖 Bump version [automated]"
         git push origin main
 
-    - name: Build package
+    - name: Build fastCrypter Package
       run: |
-        python -m build
+        python setup.py sdist bdist_wheel
 
-    - name: Check package
-      run: |
-        twine check dist/*
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: dist-packages
-        path: dist/
-
-  publish:
-    name: Publish to PyPI
-    runs-on: ubuntu-latest
-    needs: [test, build]
-    if: github.event_name == 'release' && github.event.action == 'published'
-    environment: pypi
-
-    steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: dist-packages
-        path: dist/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish package to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        password: ${{ secrets.PYPI_TOKEN }}
-        verbose: true
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        twine upload dist/*

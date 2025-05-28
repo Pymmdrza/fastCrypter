@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Build Script for fastcrypt Native Libraries
+Build Script for fastCrypter Native Libraries
 
-This script automatically compiles C/C++ native libraries for the fastcrypt package
+This script automatically compiles C/C++ native libraries for the fastCrypter package
 to provide maximum performance for cryptographic operations.
 """
 
@@ -20,7 +20,7 @@ class NativeLibraryBuilder:
     def __init__(self):
         """Initialize the builder."""
         self.project_root = Path(__file__).parent
-        self.native_dir = self.project_root / 'fastcrypt' / 'native'
+        self.native_dir = self.project_root / 'fastCrypter' / 'native'
         self.libs_dir = self.native_dir / 'libs'
         self.platform = self._detect_platform()
         self.platform_dir = self.libs_dir / self.platform
@@ -217,7 +217,7 @@ class NativeLibraryBuilder:
             # Try to load the libraries using Python
             sys.path.insert(0, str(self.project_root))
             
-            from fastcrypt.native.native_loader import get_native_manager
+            from fastCrypterer.native.native_loader import get_native_manager
             
             manager = get_native_manager()
             results = manager.load_all()
@@ -273,7 +273,7 @@ class NativeLibraryBuilder:
     
     def build_all(self) -> bool:
         """Build all native libraries."""
-        print("Building fastcrypt Native Libraries")
+        print("Building fastCrypter Native Libraries")
         print("=" * 50)
         
         # Check dependencies
@@ -357,7 +357,7 @@ def main():
     """Main function."""
     import argparse
     
-    parser = argparse.ArgumentParser(description='Build fastcrypt native libraries')
+    parser = argparse.ArgumentParser(description='Build fastCrypter native libraries')
     parser.add_argument('--clean', action='store_true', help='Clean build artifacts')
     parser.add_argument('--install', action='store_true', help='Install libraries system-wide')
     parser.add_argument('--test-only', action='store_true', help='Only test existing libraries')

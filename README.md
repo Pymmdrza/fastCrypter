@@ -1,13 +1,13 @@
-# 🚀 FastCrypt
+# 🚀 fastCrypter
 
 **Professional Compression and Encryption Library with Native C/C++ Acceleration**
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![PyPI Version](https://img.shields.io/pypi/v/fastcrypt.svg)](https://pypi.org/project/fastcrypt/)
-[![Downloads](https://img.shields.io/pypi/dm/fastcrypt.svg)](https://pypi.org/project/fastcrypt/)
+[![PyPI Version](https://img.shields.io/pypi/v/fastCrypter.svg)](https://pypi.org/project/fastCrypter/)
+[![Downloads](https://img.shields.io/pypi/dm/fastCrypter.svg)](https://pypi.org/project/fastCrypter/)
 
-FastCrypt is a powerful Python library that combines advanced compression and encryption techniques with native C/C++ acceleration for maximum performance. It provides a comprehensive suite of tools for secure data handling, from simple file encryption to complex custom encoding schemes.
+fastCrypter is a powerful Python library that combines advanced compression and encryption techniques with native C/C++ acceleration for maximum performance. It provides a comprehensive suite of tools for secure data handling, from simple file encryption to complex custom encoding schemes.
 
 ## ✨ Key Features
 
@@ -41,22 +41,22 @@ FastCrypt is a powerful Python library that combines advanced compression and en
 
 ```bash
 # Install from PyPI
-pip install fastcrypt
+pip install fastCrypter
 
 # Install with development dependencies
-pip install fastcrypt[dev]
+pip install fastCrypter[dev]
 
 # Install with native compilation support
-pip install fastcrypt[native]
+pip install fastCrypter[native]
 ```
 
 ### Basic Usage
 
 ```python
-import fastcrypt
+import fastCrypterer
 
 # Get the recommended compressor (automatically uses native acceleration if available)
-compressor = fastcrypt.get_recommended_compressor(password="your_secure_password")
+compressor = fastCrypterer.get_recommended_compressor(password="your_secure_password")
 
 # Compress and encrypt data
 data = b"Your sensitive data here"
@@ -70,7 +70,7 @@ assert data == decrypted
 ### Custom Encoding Example
 
 ```python
-from fastcrypt import CustomEncoder
+from fastCrypterer import CustomEncoder
 
 # Create custom encoder with your character set
 encoder = CustomEncoder(charset="abcdef98Xvbvii")
@@ -88,7 +88,7 @@ assert original == decoded
 ### File Encryption
 
 ```python
-from fastcrypt import FileEncryptor
+from fastCrypterer import FileEncryptor
 
 # Initialize file encryptor
 encryptor = FileEncryptor(password="your_password")
@@ -102,10 +102,10 @@ encryptor.decrypt_file("document.pdf.encrypted", "document_restored.pdf")
 
 ## 🏗️ Architecture
 
-FastCrypt is built with a modular architecture:
+fastCrypter is built with a modular architecture:
 
 ```
-fastcrypt/
+fastCrypter/
 ├── core/                 # Core functionality
 │   ├── compressor.py     # Compression algorithms
 │   ├── encryptor.py      # Encryption algorithms
@@ -123,7 +123,7 @@ fastcrypt/
 
 ## 🔧 Native Compilation
 
-FastCrypt includes C/C++ libraries for performance-critical operations:
+fastCrypter includes C/C++ libraries for performance-critical operations:
 
 ### Automatic Compilation
 
@@ -142,11 +142,11 @@ python build_native.py --release
 
 ```bash
 # Using Make (Linux/macOS)
-cd fastcrypt/native
+cd fastCrypter/native
 make all
 
 # Using MinGW (Windows)
-cd fastcrypt/native
+cd fastCrypter/native
 mingw32-make all
 ```
 
@@ -163,7 +163,7 @@ Native libraries provide significant performance improvements:
 
 ```python
 # Run comprehensive benchmarks
-results = fastcrypt.benchmark_available_features(data_size=1024*1024)
+results = fastCrypter.benchmark_available_features(data_size=1024*1024)
 print(f"Native acceleration: {results['performance']['native']['available']}")
 print(f"Speedup factor: {results['performance'].get('speedup', 'N/A')}")
 ```
@@ -178,7 +178,7 @@ Example results on modern hardware:
 ### Enhanced Compressor
 
 ```python
-from fastcrypt import EnhancedCompressor
+from fastCrypterer import EnhancedCompressor
 
 # Create enhanced compressor with native acceleration
 compressor = EnhancedCompressor(
@@ -195,7 +195,7 @@ if compressor.is_native_available():
 ### Custom Algorithms
 
 ```python
-from fastcrypt.core import Compressor, CompressionAlgorithmType
+from fastCrypterer.core import Compressor, CompressionAlgorithmType
 
 # Use specific compression algorithm
 compressor = Compressor(
@@ -207,7 +207,7 @@ compressor = Compressor(
 ### Secure Key Management
 
 ```python
-from fastcrypt import KeyManager
+from fastCrypterer import KeyManager
 
 # Generate secure keys
 key_manager = KeyManager()
@@ -220,14 +220,14 @@ signing_key = key_manager.derive_key(master_key, b"signing", 32)
 
 ## 🧪 Testing
 
-FastCrypt includes comprehensive tests:
+fastCrypter includes comprehensive tests:
 
 ```bash
 # Run all tests
 python -m pytest tests/ -v
 
 # Run with coverage
-python -m pytest tests/ --cov=fastcrypt --cov-report=html
+python -m pytest tests/ --cov=fastCrypter --cov-report=html
 
 # Run performance tests
 python -m pytest tests/test_performance.py -v
@@ -242,8 +242,8 @@ python final_test.py
 
 ```bash
 # Clone repository
-git clone https://github.com/Pymmdrza/fastcrypt.git
-cd fastcrypt
+git clone https://github.com/Pymmdrza/fastCrypter.git
+cd fastCrypter
 
 # Install in development mode
 pip install -e .[dev]
@@ -259,18 +259,18 @@ python -m pytest
 
 ```bash
 # Format code
-black fastcrypt/ tests/
+black fastCrypter/ tests/
 
 # Lint code
-flake8 fastcrypt/ tests/
+flake8 fastCrypter/ tests/
 
 # Type checking
-mypy fastcrypt/
+mypy fastCrypter/
 ```
 
 ## 📚 Documentation
 
-- **API Reference**: [docs.fastcrypt.dev](https://docs.fastcrypt.dev)
+- **API Reference**: [docs.fastCrypter.dev](https://docs.fastCrypter.dev)
 - **Examples**: See `examples/` directory
 - **Performance Guide**: [Performance Optimization](docs/performance.md)
 - **Security Guide**: [Security Best Practices](docs/security.md)
@@ -301,10 +301,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/Pymmdrza/fastcrypt/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Pymmdrza/fastcrypt/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Pymmdrza/fastCrypter/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Pymmdrza/fastCrypter/discussions)
 - **Email**: pymmdrza@gmail.com
 
 ---
 
-**FastCrypt** - Making encryption fast, secure, and accessible! 🚀🔐 
+**fastCrypter** - Making encryption fast, secure, and accessible! 🚀🔐 

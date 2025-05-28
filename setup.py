@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Setup script for FastCrypt package.
+Setup script for fastCrypter package.
 """
 
 from setuptools import setup, find_packages
@@ -18,14 +18,14 @@ if requirements_file.exists():
     requirements = [req.strip() for req in requirements if req.strip() and not req.startswith('#')]
 
 setup(
-    name="fastcrypt",
+    name="fastCrypter",
     version="2.0.3",
     author="Mmdrza",
     author_email="pymmdrza@gmail.com",
     description="Professional compression and encryption library with native C/C++ acceleration",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Pymmdrza/fastcrypt",
+    url="https://github.com/Pymmdrza/fastCrypter",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -64,12 +64,12 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "fastcrypt=fastcrypt.cli:main",
+            "fastCrypter=fastCrypter.cli:main",
         ],
     },
     include_package_data=True,
     package_data={
-        "fastcrypt": [
+        "fastCrypter": [
             "native/libs/*/*.so",
             "native/libs/*/*.dll", 
             "native/libs/*/*.dylib",
@@ -82,8 +82,8 @@ setup(
         "native", "performance", "c++", "custom-encoding", "fast"
     ],
     project_urls={
-        "Bug Reports": "https://github.com/Pymmdrza/fastcrypt/issues",
-        "Source": "https://github.com/Pymmdrza/fastcrypt",
-        "Documentation": "https://fastcrypt.readthedocs.io/",
+        "Bug Reports": "https://github.com/Pymmdrza/fastCrypter/issues",
+        "Source": "https://github.com/Pymmdrza/fastCrypter",
+        "Documentation": "https://fastCrypter.readthedocs.io/",
     },
 ) 

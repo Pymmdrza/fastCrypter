@@ -75,7 +75,7 @@ static PyObject* secure_clear(PyObject* self, PyObject* args) {
 }
 
 // Method definitions
-static PyMethodDef FastCryptoMethods[] = {
+static PyMethodDef fastCrypteroMethods[] = {
     {"fast_xor", fast_xor, METH_VARARGS, "Fast XOR operation"},
     {"fast_entropy", fast_entropy, METH_VARARGS, "Fast entropy calculation"},
     {"secure_clear", secure_clear, METH_VARARGS, "Secure memory clearing"},
@@ -83,15 +83,15 @@ static PyMethodDef FastCryptoMethods[] = {
 };
 
 // Module definition
-static struct PyModuleDef fastcryptomodule = {
+static struct PyModuleDef fastCrypteromodule = {
     PyModuleDef_HEAD_INIT,
     "fast_crypto",
     "Fast cryptographic operations in C",
     -1,
-    FastCryptoMethods
+    fastCrypteroMethods
 };
 
 // Module initialization
 PyMODINIT_FUNC PyInit_fast_crypto(void) {
-    return PyModule_Create(&fastcryptomodule);
+    return PyModule_Create(&fastCrypteromodule);
 } 
