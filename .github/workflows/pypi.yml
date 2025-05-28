@@ -78,7 +78,7 @@ jobs:
         git push origin main
 
     - name: Build fastCrypter Package
-
+      run: |
         python setup.py sdist bdist_wheel
 
       env:
