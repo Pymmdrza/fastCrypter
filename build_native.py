@@ -111,39 +111,39 @@ class NativeLibraryBuilder:
     
     def check_dependencies(self) -> bool:
         """Check if all required dependencies are available."""
-        print("🔍 Checking build dependencies...")
+        print("Checking build dependencies...")
         
         # Check compilers
         if 'c' not in self.compilers:
-            print("❌ C compiler not found. Please install gcc, clang, or equivalent.")
+            print("C compiler not found. Please install gcc, clang, or equivalent.")
             return False
         
         if 'cxx' not in self.compilers:
-            print("❌ C++ compiler not found. Please install g++, clang++, or equivalent.")
+            print("C++ compiler not found. Please install g++, clang++, or equivalent.")
             return False
         
-        print(f"✅ C compiler: {self.compilers['c']}")
-        print(f"✅ C++ compiler: {self.compilers['cxx']}")
-        print(f"✅ Platform: {self.platform}")
-        print(f"✅ Library extension: {self.lib_extension}")
+        print(f"C compiler: {self.compilers['c']}")
+        print(f"C++ compiler: {self.compilers['cxx']}")
+        print(f"Platform: {self.platform}")
+        print(f"Library extension: {self.lib_extension}")
         
         return True
     
     def create_directories(self):
         """Create necessary directories."""
-        print("📁 Creating directories...")
+        print("Creating directories...")
         self.platform_dir.mkdir(parents=True, exist_ok=True)
-        print(f"✅ Created: {self.platform_dir}")
+        print(f"Created: {self.platform_dir}")
     
     def compile_crypto_core(self) -> bool:
         """Compile crypto_core library."""
-        print("🔨 Compiling crypto_core library...")
+        print("Compiling crypto_core library...")
         
         source_file = self.native_dir / 'crypto_core.c'
         output_file = self.platform_dir / f'libcrypto_core{self.lib_extension}'
         
         if not source_file.exists():
-            print(f"❌ Source file not found: {source_file}")
+            print(f"Source file not found: {source_file}")
             return False
         
         # Build command
@@ -160,27 +160,27 @@ class NativeLibraryBuilder:
             result = subprocess.run(cmd, capture_output=True, text=True, cwd=self.native_dir)
             
             if result.returncode == 0:
-                print(f"✅ crypto_core library built: {output_file}")
+                print(f"crypto_core library built: {output_file}")
                 return True
             else:
-                print(f"❌ Compilation failed:")
+                print(f"Compilation failed:")
                 print(f"   stdout: {result.stdout}")
                 print(f"   stderr: {result.stderr}")
                 return False
                 
         except Exception as e:
-            print(f"❌ Compilation error: {e}")
+            print(f"Compilation error: {e}")
             return False
     
     def compile_hash_algorithms(self) -> bool:
         """Compile hash_algorithms library."""
-        print("🔨 Compiling hash_algorithms library...")
+        print("Compiling hash_algorithms library...")
         
         source_file = self.native_dir / 'hash_algorithms.cpp'
         output_file = self.platform_dir / f'libhash_algorithms{self.lib_extension}'
         
         if not source_file.exists():
-            print(f"❌ Source file not found: {source_file}")
+            print(f"Source file not found: {source_file}")
             return False
         
         # Build command
@@ -197,21 +197,21 @@ class NativeLibraryBuilder:
             result = subprocess.run(cmd, capture_output=True, text=True, cwd=self.native_dir)
             
             if result.returncode == 0:
-                print(f"✅ hash_algorithms library built: {output_file}")
+                print(f"hash_algorithms library built: {output_file}")
                 return True
             else:
-                print(f"❌ Compilation failed:")
+                print(f"Compilation failed:")
                 print(f"   stdout: {result.stdout}")
                 print(f"   stderr: {result.stderr}")
                 return False
                 
         except Exception as e:
-            print(f"❌ Compilation error: {e}")
+            print(f"Compilation error: {e}")
             return False
     
     def test_libraries(self) -> bool:
         """Test compiled libraries."""
-        print("🧪 Testing compiled libraries...")
+        print("Testing compiled libraries...")
         
         try:
             # Try to load the libraries using Python
@@ -225,13 +225,13 @@ class NativeLibraryBuilder:
             success = True
             for lib_name, loaded in results.items():
                 if loaded:
-                    print(f"✅ {lib_name}: loaded successfully")
+                    print(f"{lib_name}: loaded successfully")
                 else:
-                    print(f"❌ {lib_name}: failed to load")
+                    print(f"{lib_name}: failed to load")
                     success = False
             
             if success:
-                print("🎉 All libraries loaded successfully!")
+                print("All libraries loaded successfully!")
                 
                 # Run basic functionality tests
                 if manager.crypto_core:
@@ -240,14 +240,14 @@ class NativeLibraryBuilder:
                         test_data = b"Hello, World!"
                         test_key = b"key123"
                         result = manager.crypto_core.fast_xor(test_data, test_key)
-                        print("✅ crypto_core: XOR operation test passed")
+                        print("XOR operation test passed")
                         
                         # Test entropy calculation
                         entropy = manager.crypto_core.calculate_entropy(test_data)
-                        print(f"✅ crypto_core: Entropy calculation test passed (entropy: {entropy:.2f})")
+                        print(f"Entropy calculation test passed (entropy: {entropy:.2f})")
                         
                     except Exception as e:
-                        print(f"❌ crypto_core: Functionality test failed: {e}")
+                        print(f"Functionality test failed: {e}")
                         success = False
                 
                 if manager.hash_algorithms:
@@ -255,25 +255,25 @@ class NativeLibraryBuilder:
                         # Test SHA-256
                         test_data = b"Hello, World!"
                         hash_result = manager.hash_algorithms.fast_sha256(test_data)
-                        print(f"✅ hash_algorithms: SHA-256 test passed (hash: {hash_result[:8].hex()}...)")
+                        print(f"hash_algorithms: SHA-256 test passed (hash: {hash_result[:8].hex()}...)")
                         
                         # Test key generation
                         private_key, public_key = manager.hash_algorithms.generate_keypair()
-                        print(f"✅ hash_algorithms: Key generation test passed")
+                        print(f"hash_algorithms: Key generation test passed")
                         
                     except Exception as e:
-                        print(f"❌ hash_algorithms: Functionality test failed: {e}")
+                        print(f"hash_algorithms: Functionality test failed: {e}")
                         success = False
             
             return success
             
         except Exception as e:
-            print(f"❌ Library testing failed: {e}")
+            print(f"Library testing failed: {e}")
             return False
     
     def build_all(self) -> bool:
         """Build all native libraries."""
-        print("🚀 Building Encrypter Native Libraries")
+        print("Building Encrypter Native Libraries")
         print("=" * 50)
         
         # Check dependencies
@@ -293,47 +293,47 @@ class NativeLibraryBuilder:
             success = False
         
         if success:
-            print("\n🎉 All libraries compiled successfully!")
+            print("\nAll libraries compiled successfully!")
             
             # Test libraries
             if self.test_libraries():
-                print("\n✅ Build completed successfully!")
-                print(f"📦 Libraries available in: {self.platform_dir}")
+                print("\nBuild completed successfully!")
+                print(f"Libraries available in: {self.platform_dir}")
                 return True
             else:
-                print("\n❌ Library testing failed!")
+                print("\nLibrary testing failed!")
                 return False
         else:
-            print("\n❌ Build failed!")
+            print("\nBuild failed!")
             return False
     
     def clean(self):
         """Clean build artifacts."""
-        print("🧹 Cleaning build artifacts...")
+        print("Cleaning build artifacts...")
         
         if self.libs_dir.exists():
             shutil.rmtree(self.libs_dir)
-            print(f"✅ Removed: {self.libs_dir}")
+            print(f"Removed: {self.libs_dir}")
         else:
-            print("✅ No build artifacts to clean")
+            print("No build artifacts to clean")
     
     def install_system_wide(self) -> bool:
         """Install libraries system-wide (optional)."""
-        print("📦 Installing libraries system-wide...")
+        print("Installing libraries system-wide...")
         
         if self.platform == 'linux':
             try:
                 for lib_file in self.platform_dir.glob('*.so'):
                     dest = Path('/usr/local/lib') / lib_file.name
                     subprocess.run(['sudo', 'cp', str(lib_file), str(dest)], check=True)
-                    print(f"✅ Installed: {dest}")
+                    print(f"Installed: {dest}")
                 
                 subprocess.run(['sudo', 'ldconfig'], check=True)
-                print("✅ Updated library cache")
+                print("Updated library cache")
                 return True
                 
             except subprocess.CalledProcessError as e:
-                print(f"❌ Installation failed: {e}")
+                print(f"Installation failed: {e}")
                 return False
         
         elif self.platform == 'macos':
@@ -341,15 +341,15 @@ class NativeLibraryBuilder:
                 for lib_file in self.platform_dir.glob('*.dylib'):
                     dest = Path('/usr/local/lib') / lib_file.name
                     subprocess.run(['sudo', 'cp', str(lib_file), str(dest)], check=True)
-                    print(f"✅ Installed: {dest}")
+                    print(f"Installed: {dest}")
                 return True
                 
             except subprocess.CalledProcessError as e:
-                print(f"❌ Installation failed: {e}")
+                print(f"Installation failed: {e}")
                 return False
         
         else:
-            print("ℹ️  System-wide installation not supported on Windows")
+            print("System-wide installation not supported on Windows")
             return True
 
 
