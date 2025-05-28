@@ -1,8 +1,6 @@
 # Include documentation files
 include README.md
 include LICENSE
-include CHANGELOG.md
-include PLANNING.md
 include TASK.md
 
 # Include requirements
@@ -37,5 +35,4 @@ global-exclude .DS_Store
 global-exclude *.tmp
 global-exclude *.temp
 global-exclude .vscode
-global-exclude .cursor
 global-exclude .idea 

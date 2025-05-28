@@ -15,6 +15,7 @@ extern "C" {
 #else
     #define EXPORT __attribute__((visibility("default")))
 #endif
+}
 
 // SHA-256 implementation (simplified for demo)
 class SHA256 {
