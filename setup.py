@@ -8,18 +8,22 @@ from pathlib import Path
 
 # Read README file
 readme_file = Path(__file__).parent / "README.md"
-long_description = readme_file.read_text(encoding="utf-8") if readme_file.exists() else ""
+long_description = (
+    readme_file.read_text(encoding="utf-8") if readme_file.exists() else ""
+)
 
 # Read requirements
 requirements_file = Path(__file__).parent / "requirements.txt"
 requirements = []
 if requirements_file.exists():
-    requirements = requirements_file.read_text(encoding="utf-8").strip().split('\n')
-    requirements = [req.strip() for req in requirements if req.strip() and not req.startswith('#')]
+    requirements = requirements_file.read_text(encoding="utf-8").strip().split("\n")
+    requirements = [
+        req.strip() for req in requirements if req.strip() and not req.startswith("#")
+    ]
 
 setup(
-    name="fastCrypter",
-    version="2.0.3",
+    name="fastcrypter",
+    version="2.0.6",
     author="Mmdrza",
     author_email="pymmdrza@gmail.com",
     description="Professional compression and encryption library with native C/C++ acceleration",
@@ -60,7 +64,7 @@ setup(
         "native": [
             "numpy>=1.24.0",
             "cython>=3.0.0",
-        ]
+        ],
     },
     entry_points={
         "console_scripts": [
@@ -71,19 +75,31 @@ setup(
     package_data={
         "fastCrypter": [
             "native/libs/*/*.so",
-            "native/libs/*/*.dll", 
+            "native/libs/*/*.dll",
             "native/libs/*/*.dylib",
             "*.md",
         ],
     },
     keywords=[
-        "encryption", "compression", "security", "cryptography",
-        "aes", "chacha20", "rsa", "zlib", "lzma", "brotli",
-        "native", "performance", "c++", "custom-encoding", "fast"
+        "encryption",
+        "compression",
+        "security",
+        "cryptography",
+        "aes",
+        "chacha20",
+        "rsa",
+        "zlib",
+        "lzma",
+        "brotli",
+        "native",
+        "performance",
+        "c++",
+        "custom-encoding",
+        "fast",
     ],
     project_urls={
         "Bug Reports": "https://github.com/Pymmdrza/fastCrypter/issues",
         "Source": "https://github.com/Pymmdrza/fastCrypter",
         "Documentation": "https://fastCrypter.readthedocs.io/",
     },
-) 
+)
