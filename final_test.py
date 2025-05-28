@@ -3,12 +3,23 @@
 Final comprehensive test for FastCrypt package.
 """
 
+import sys
+if sys.platform.startswith("win"):
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8")
+        else:
+            import os
+            sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    except Exception:
+        pass
+
 from fastcrypt import SecureCompressor
 import time
 
 def test_basic_functionality():
     """Test basic compression and encryption functionality."""
-    print("🧪 Testing basic functionality...")
+    print("Testing basic functionality...")
     
     # Test data
     test_data = b"Hello, FastCrypt! This is a test message for compression and encryption."
@@ -30,16 +41,16 @@ def test_basic_functionality():
     # Verify
     assert test_data == decrypted_data, "Data integrity check failed!"
     
-    print(f"✅ Basic test passed!")
-    print(f"   Original size: {len(test_data)} bytes")
-    print(f"   Encrypted size: {len(encrypted_data)} bytes")
-    print(f"   Compression ratio: {len(encrypted_data)/len(test_data):.2f}")
-    print(f"   Encrypt time: {encrypt_time*1000:.2f}ms")
-    print(f"   Decrypt time: {decrypt_time*1000:.2f}ms")
+    print(f"Basic test passed!")
+    print(f"Original size: {len(test_data)} bytes")
+    print(f"Encrypted size: {len(encrypted_data)} bytes")
+    print(f"Compression ratio: {len(encrypted_data)/len(test_data):.2f}")
+    print(f"Encrypt time: {encrypt_time*1000:.2f}ms")
+    print(f"Decrypt time: {decrypt_time*1000:.2f}ms")
 
 def test_custom_encoding():
     """Test custom encoding functionality."""
-    print("\n🎨 Testing custom encoding...")
+    print("\nTesting custom encoding...")
     
     try:
         from fastcrypt import CustomEncoder
@@ -58,28 +69,28 @@ def test_custom_encoding():
         for char in encoded:
             assert char in charset, f"Invalid character '{char}' found in encoded output!"
         
-        print(f"✅ Custom encoding test passed!")
+        print(f"Custom encoding test passed!")
         print(f"   Charset: {charset}")
         print(f"   Original: {test_data}")
         print(f"   Encoded: {encoded}")
         print(f"   Decoded: {decoded}")
         
     except ImportError:
-        print("⚠️ CustomEncoder not available")
+        print("CustomEncoder not available")
 
 def test_enhanced_features():
     """Test enhanced compressor if available."""
-    print("\n⚡ Testing enhanced features...")
+    print("\nTesting enhanced features...")
     
     try:
         from fastcrypt import EnhancedCompressor, ENHANCED_AVAILABLE, NATIVE_SUPPORT
         
-        print(f"   Enhanced compressor available: {ENHANCED_AVAILABLE}")
-        print(f"   Native support available: {NATIVE_SUPPORT}")
+        print(f"Enhanced compressor available: {ENHANCED_AVAILABLE}")
+        print(f"Native support available: {NATIVE_SUPPORT}")
         
         if ENHANCED_AVAILABLE:
             compressor = EnhancedCompressor(password="TestPassword123!")
-            print(f"   Native libraries loaded: {compressor.is_native_available()}")
+            print(f"Native libraries loaded: {compressor.is_native_available()}")
             
             # Test basic functionality
             test_data = b"Enhanced compressor test data"
@@ -87,16 +98,16 @@ def test_enhanced_features():
             decrypted = compressor.decrypt_and_decompress(encrypted)
             
             assert test_data == decrypted, "Enhanced compressor integrity check failed!"
-            print("✅ Enhanced compressor test passed!")
+            print("Enhanced compressor test passed!")
         else:
-            print("⚠️ Enhanced compressor not available")
+            print("Enhanced compressor not available")
             
     except ImportError as e:
-        print(f"⚠️ Enhanced features not available: {e}")
+        print(f"Enhanced features not available: {e}")
 
 def test_package_info():
     """Test package information."""
-    print("\n📦 Testing package information...")
+    print("\nTesting package information...")
     
     import fastcrypt
     
@@ -111,11 +122,11 @@ def test_package_info():
     print(f"   URL: {info['url']}")
     print(f"   Features: {list(info['features'].keys())}")
     
-    print("✅ Package information test passed!")
+    print("Package information test passed!")
 
 def main():
     """Run all tests."""
-    print("🚀 FastCrypt Final Test Suite")
+    print("FastCrypt Final Test Suite")
     print("=" * 50)
     
     try:
@@ -125,10 +136,10 @@ def main():
         test_package_info()
         
         print("\n" + "=" * 50)
-        print("🎉 All tests passed! FastCrypt is ready to use!")
+        print("All tests passed! FastCrypt is ready to use!")
         
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\nTest failed: {e}")
         import traceback
         traceback.print_exc()
         return 1

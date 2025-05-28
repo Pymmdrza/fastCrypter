@@ -91,6 +91,10 @@ jobs:
         pip install .
         python -c "import fastcrypt; print(f'FastCrypt v{fastcrypt.__version__} installed successfully')"
 
+    - name: Build native libraries
+      run: |
+        python build_native.py
+
   build:
     name: Build package
     runs-on: ubuntu-latest
