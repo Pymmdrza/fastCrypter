@@ -62,7 +62,7 @@ jobs:
 
     - name: Run Bump script
       if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
-      run: python bump_version.py fastCrypter
+      run: python bump_version.py fastcrypter
 
     - name: Remove Bump Script
       if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
