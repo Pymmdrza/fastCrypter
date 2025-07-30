@@ -1,8 +1,7 @@
 site_name: fastCrypter
 site_description: Fast, clean fastCrypter Python package
-site_url: https://pymmdrza.github.io/fastCrypter/
+site_url: https://fastcrypter.readthedocs.io
 repo_url: https://github.com/Pymmdrza/fastCrypter
-edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -22,7 +21,7 @@ plugins:
         python:
           setup_commands:
             - import sys, os
-            - sys.path.insert(0, os.path.abspath('src'))
+            - sys.path.insert(0, os.path.abspath('fastCrypter'))
           options:
             docstring_style: google
             show_source: false
@@ -42,9 +41,3 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Guide:
-      - Quickstart: guide/quickstart.md
-      - Contributing: guide/contributing.md
-  - API Reference:
-      - fastcrypter: api/fastcrypter.md
-  - Changelog: changelog.md
