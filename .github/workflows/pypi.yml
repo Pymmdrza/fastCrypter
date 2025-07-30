@@ -152,5 +152,5 @@ jobs:
           
           **Programmer and Owner:** @Pymmdrza 
         files: |
-          dist/fastCrypter-${{ env.NEW_VERSION }}.tar.gz
-          dist/fastCrypter-${{ env.NEW_VERSION }}-py3-none-any.whl
+          dist/fastcrypter-${{ env.NEW_VERSION }}.tar.gz
+          dist/fastcrypter-${{ env.NEW_VERSION }}-py3-none-any.whl
