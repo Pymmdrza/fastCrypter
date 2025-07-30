@@ -53,10 +53,10 @@ pip install fastCrypter[native]
 ### Basic Usage
 
 ```python
-import fastCrypterer
+import fastCrypter
 
 # Get the recommended compressor (automatically uses native acceleration if available)
-compressor = fastCrypterer.get_recommended_compressor(password="your_secure_password")
+compressor = fastCrypter.get_recommended_compressor(password="your_secure_password")
 
 # Compress and encrypt data
 data = b"Your sensitive data here"
@@ -70,7 +70,7 @@ assert data == decrypted
 ### Custom Encoding Example
 
 ```python
-from fastCrypterer import CustomEncoder
+from fastCrypter import CustomEncoder
 
 # Create custom encoder with your character set
 encoder = CustomEncoder(charset="abcdef98Xvbvii")
@@ -88,7 +88,7 @@ assert original == decoded
 ### File Encryption
 
 ```python
-from fastCrypterer import FileEncryptor
+from fastCrypter import FileEncryptor
 
 # Initialize file encryptor
 encryptor = FileEncryptor(password="your_password")
@@ -98,27 +98,6 @@ encryptor.encrypt_file("document.pdf", "document.pdf.encrypted")
 
 # Decrypt the file
 encryptor.decrypt_file("document.pdf.encrypted", "document_restored.pdf")
-```
-
-## 🏗️ Architecture
-
-fastCrypter is built with a modular architecture:
-
-```
-fastCrypter/
-├── core/                 # Core functionality
-│   ├── compressor.py     # Compression algorithms
-│   ├── encryptor.py      # Encryption algorithms
-│   ├── key_manager.py    # Key derivation and management
-│   └── custom_encoder.py # Custom encoding schemes
-├── algorithms/           # Algorithm implementations
-│   ├── compression/      # Compression algorithms
-│   └── encryption/       # Encryption algorithms
-├── native/              # Native C/C++ libraries
-│   ├── libs/            # Compiled libraries (.so/.dll/.dylib)
-│   └── native_loader.py # Python bindings
-├── utils/               # Utility functions
-└── exceptions.py        # Custom exceptions
 ```
 
 ## 🔧 Native Compilation
@@ -178,7 +157,7 @@ Example results on modern hardware:
 ### Enhanced Compressor
 
 ```python
-from fastCrypterer import EnhancedCompressor
+from fastCrypter import EnhancedCompressor
 
 # Create enhanced compressor with native acceleration
 compressor = EnhancedCompressor(
@@ -195,7 +174,7 @@ if compressor.is_native_available():
 ### Custom Algorithms
 
 ```python
-from fastCrypterer.core import Compressor, CompressionAlgorithmType
+from fastCrypter.core import Compressor, CompressionAlgorithmType
 
 # Use specific compression algorithm
 compressor = Compressor(
@@ -207,7 +186,7 @@ compressor = Compressor(
 ### Secure Key Management
 
 ```python
-from fastCrypterer import KeyManager
+from fastCrypter import KeyManager
 
 # Generate secure keys
 key_manager = KeyManager()
@@ -270,10 +249,9 @@ mypy fastCrypter/
 
 ## 📚 Documentation
 
-- **API Reference**: [docs.fastCrypter.dev](https://docs.fastCrypter.dev)
-- **Examples**: See `examples/` directory
+- **API Reference**: [ [Document](https://fastcrypter.readthedocs.io) ]
+- **Examples**: See `examples/` directory [Examples](https://github.com/Pymmdrza/fastCrypter/tree/main/examples)
 - **Performance Guide**: [Performance Optimization](docs/performance.md)
-- **Security Guide**: [Security Best Practices](docs/security.md)
 
 ## 🤝 Contributing
 
@@ -307,4 +285,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**fastCrypter** - Making encryption fast, secure, and accessible! 🚀🔐 
+**`fastCrypter`** - Making encryption fast, secure, and accessible! 🚀🔐 
