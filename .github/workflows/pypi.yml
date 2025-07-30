@@ -150,8 +150,7 @@ jobs:
           - [Automatic Compilation](https://github.com/Pymmdrza/fastCrypter#automatic-compilation 'Automatic Compilation')
           - [Performance Benefits](https://github.com/Pymmdrza/fastCrypter#performance-benefits 'Performance Benefits')
           
-          **Programmer and Owner:** @Pymmdrza
-		  
+          **Programmer and Owner:** @Pymmdrza 
         files: |
           dist/fastCrypter-${{ env.NEW_VERSION }}.tar.gz
           dist/fastCrypter-${{ env.NEW_VERSION }}-py3-none-any.whl
