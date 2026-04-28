@@ -9,17 +9,17 @@ that allows encrypted output to use only specified characters.
 import sys
 import os
 
-# Add the parent directory to the path so we can import encrypter
+# Add the parent directory to the path so we can import fastcrypter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from encrypter import SecureCompressor
-from encrypter.core.custom_encoder import CustomEncoder
+from fastcrypter import SecureCompressor
+from fastcrypter.core.custom_encoder import CustomEncoder
 
 
 def main():
     """Test custom encoding functionality."""
     
-    print("🔤 Custom Encoding Test for Encrypter Package")
+    print(" Custom Encoding Test for Encrypter Package")
     print("=" * 60)
     
     # Test data
@@ -29,13 +29,13 @@ def main():
     # Your specified character set
     custom_charset = "abcdef98Xvbvii"
     
-    print(f"📝 Original data: {test_data}")
-    print(f"🔤 Custom charset: {custom_charset}")
+    print(f" Original data: {test_data}")
+    print(f" Custom charset: {custom_charset}")
     print(f"   Character count: {len(set(custom_charset))} unique characters")
     print()
     
     # Test 1: Basic custom encoding
-    print("🧪 Test 1: Basic Custom Encoding")
+    print(" Test 1: Basic Custom Encoding")
     print("-" * 40)
     
     # Create compressor with custom charset
@@ -47,7 +47,7 @@ def main():
     # Encrypt and encode to custom charset
     custom_encoded = compressor.compress_and_encrypt_to_custom(test_data, custom_charset)
     
-    print(f"✅ Encrypted and encoded: {custom_encoded}")
+    print(f" Encrypted and encoded: {custom_encoded}")
     print(f"   Length: {len(custom_encoded)} characters")
     print(f"   Uses only specified chars: {all(c in custom_charset for c in custom_encoded)}")
     
@@ -55,12 +55,12 @@ def main():
     decoded_data = compressor.decrypt_and_decompress_from_custom(custom_encoded, custom_charset)
     decoded_text = decoded_data.decode('utf-8')
     
-    print(f"✅ Decrypted and decoded: {decoded_text}")
+    print(f" Decrypted and decoded: {decoded_text}")
     print(f"   Matches original: {test_data == decoded_text}")
     print()
     
     # Test 2: Different output formats
-    print("🧪 Test 2: Different Output Formats")
+    print(" Test 2: Different Output Formats")
     print("-" * 40)
     
     # Binary format (normal)
@@ -78,7 +78,7 @@ def main():
     print()
     
     # Test 3: Custom Encoder standalone
-    print("🧪 Test 3: Custom Encoder Standalone")
+    print(" Test 3: Custom Encoder Standalone")
     print("-" * 40)
     
     encoder = CustomEncoder(charset=custom_charset)
@@ -95,7 +95,7 @@ def main():
     print()
     
     # Test 4: Encoder with noise
-    print("🧪 Test 4: Encoding with Noise (Obfuscation)")
+    print(" Test 4: Encoding with Noise (Obfuscation)")
     print("-" * 40)
     
     noisy_encoded = encoder.encode_with_noise(binary_data, noise_ratio=0.2)
@@ -104,7 +104,7 @@ def main():
     print()
     
     # Test 5: Performance benchmark
-    print("🧪 Test 5: Performance Benchmark")
+    print(" Test 5: Performance Benchmark")
     print("-" * 40)
     
     benchmark_results = encoder.benchmark_encoding(data_size=1024)
@@ -118,7 +118,7 @@ def main():
     print()
     
     # Test 6: Different character sets
-    print("🧪 Test 6: Different Character Sets")
+    print(" Test 6: Different Character Sets")
     print("-" * 40)
     
     test_charsets = [
@@ -143,12 +143,12 @@ def main():
             print(f"   Success: {test_text == decoded}")
             
         except Exception as e:
-            print(f"Charset '{charset}': ❌ Error - {e}")
+            print(f"Charset '{charset}':  Error - {e}")
     
     print()
     
     # Test 7: Integration with SecureCompressor
-    print("🧪 Test 7: Full Integration Test")
+    print(" Test 7: Full Integration Test")
     print("-" * 40)
     
     # Test different data types
@@ -178,17 +178,17 @@ def main():
             print(f"   Success: {success}")
             
         except Exception as e:
-            print(f"{test_name}: ❌ Error - {e}")
+            print(f"{test_name}:  Error - {e}")
     
     print()
-    print("🎉 Custom encoding tests completed!")
+    print(" Custom encoding tests completed!")
     print()
-    print("📋 Summary:")
-    print("✅ Custom character set encoding works correctly")
-    print("✅ Only specified characters are used in output")
-    print("✅ Data integrity is maintained through encode/decode cycle")
-    print("✅ Integration with compression and encryption is seamless")
-    print("✅ Performance is acceptable for most use cases")
+    print(" Summary:")
+    print(" Custom character set encoding works correctly")
+    print(" Only specified characters are used in output")
+    print(" Data integrity is maintained through encode/decode cycle")
+    print(" Integration with compression and encryption is seamless")
+    print(" Performance is acceptable for most use cases")
     
     return 0
 

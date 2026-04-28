@@ -8,23 +8,23 @@ This file demonstrates how to use the main features of the package.
 import sys
 import os
 
-# Add the parent directory to the path so we can import encrypter
+# Add the parent directory to the path so we can import fastcrypter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from encrypter import SecureCompressor
+from fastcrypter import SecureCompressor
 
 
 def main():
     """Basic usage example of SecureCompressor."""
     
-    print("🔐 Encrypter Package Usage Example")
+    print(" Encrypter Package Usage Example")
     print("=" * 50)
     
     # Create SecureCompressor instance
     password = "MySecurePassword123!"
     compressor = SecureCompressor(password=password)
     
-    print(f"✅ SecureCompressor created: {compressor}")
+    print(f" SecureCompressor created: {compressor}")
     print()
     
     # Sample data
@@ -41,17 +41,17 @@ def main():
     phrases that can be used in different tests.
     """
     
-    print("📝 Original data:")
+    print(" Original data:")
     print(f"   Length: {len(sample_data)} bytes")
     print(f"   Content: {sample_data[:100]}...")
     print()
     
     try:
         # Compression and encryption
-        print("🔄 Compressing and encrypting...")
+        print(" Compressing and encrypting...")
         encrypted_data = compressor.compress_and_encrypt(sample_data)
         
-        print(f"✅ Compression and encryption successful:")
+        print(f" Compression and encryption successful:")
         print(f"   Final length: {len(encrypted_data)} bytes")
         
         # Calculate compression ratio
@@ -60,24 +60,24 @@ def main():
         print()
         
         # Decryption and decompression
-        print("🔄 Decrypting and decompressing...")
+        print(" Decrypting and decompressing...")
         decrypted_data = compressor.decrypt_and_decompress_to_string(encrypted_data)
         
-        print("✅ Decryption and decompression successful:")
+        print(" Decryption and decompression successful:")
         print(f"   Recovered length: {len(decrypted_data)} bytes")
         print(f"   Content: {decrypted_data[:100]}...")
         print()
         
         # Verify data integrity
         if sample_data.strip() == decrypted_data.strip():
-            print("✅ Data successfully recovered!")
+            print(" Data successfully recovered!")
         else:
-            print("❌ Error: Recovered data does not match original!")
+            print(" Error: Recovered data does not match original!")
         
         print()
         
         # Display configuration information
-        print("📊 Configuration information:")
+        print(" Configuration information:")
         info = compressor.get_info()
         print(f"   Compression algorithm: {info['compressor_info']['algorithm']}")
         print(f"   Encryption algorithm: {info['encryptor_info']['algorithm']}")
@@ -85,7 +85,7 @@ def main():
         print()
         
         # Test with different data types
-        print("🧪 Testing with different data types:")
+        print(" Testing with different data types:")
         
         # Short text
         short_text = "Hello World!"
@@ -113,10 +113,10 @@ def main():
         print(f"   JSON: {len(json_data)} bytes -> {len(encrypted_json)} bytes")
         
         print()
-        print("🎉 All tests completed successfully!")
+        print(" All tests completed successfully!")
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f" Error: {e}")
         return 1
     
     return 0

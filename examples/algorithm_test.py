@@ -9,12 +9,12 @@ import sys
 import os
 import time
 
-# Add the parent directory to the path so we can import encrypter
+# Add the parent directory to the path so we can import fastcrypter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from encrypter import SecureCompressor
-from encrypter.core.compressor import CompressionAlgorithmType
-from encrypter.core.encryptor import EncryptionAlgorithmType
+from fastcrypter import SecureCompressor
+from fastcrypter.core.compressor import CompressionAlgorithmType
+from fastcrypter.core.encryptor import EncryptionAlgorithmType
 
 
 def test_algorithm_combination(comp_algo, enc_algo, test_data, password):
@@ -63,7 +63,7 @@ def test_algorithm_combination(comp_algo, enc_algo, test_data, password):
 
 def main():
     """Main test function."""
-    print("🧪 Algorithm Testing for Encrypter Package")
+    print(" Algorithm Testing for Encrypter Package")
     print("=" * 60)
     
     # Test data
@@ -85,7 +85,7 @@ def main():
     
     password = "TestPassword123!"
     
-    print(f"📊 Test data size: {len(test_data.encode('utf-8'))} bytes")
+    print(f" Test data size: {len(test_data.encode('utf-8'))} bytes")
     print()
     
     # Compression algorithms
@@ -104,7 +104,7 @@ def main():
     
     results = []
     
-    print("🔄 Testing different combinations...")
+    print(" Testing different combinations...")
     print()
     
     for comp_algo in compression_algorithms:
@@ -119,12 +119,12 @@ def main():
             results.append(result)
             
             if result['success']:
-                print(f"✅ Success ({result['compression_ratio']:.2f}x)")
+                print(f" Success ({result['compression_ratio']:.2f}x)")
             else:
-                print(f"❌ Failed: {result.get('error', 'Unknown error')}")
+                print(f" Failed: {result.get('error', 'Unknown error')}")
     
     print()
-    print("📈 Detailed results:")
+    print(" Detailed results:")
     print("-" * 100)
     print(f"{'Combination':<25} {'Ratio':<8} {'Total Time':<10} {'Speed':<12} {'Status':<8}")
     print("-" * 100)
@@ -136,11 +136,11 @@ def main():
               f"{result['compression_ratio']:.2f}x    "
               f"{result['total_time']:.3f}s     "
               f"{result['throughput']:.1f} KB/s   "
-              f"{'✅' if result['success'] else '❌'}")
+              f"{'' if result['success'] else ''}")
     
     if successful_results:
         print()
-        print("🏆 Best results:")
+        print(" Best results:")
         
         # Best compression ratio
         best_compression = min(successful_results, key=lambda x: x['compression_ratio'])
@@ -157,7 +157,7 @@ def main():
     print()
     
     # Password strength testing
-    print("🔐 Password strength testing:")
+    print(" Password strength testing:")
     test_passwords = [
         "password",
         "MyPassword123",
@@ -173,7 +173,7 @@ def main():
             strength = compressor.validate_password_strength()
             print(f"   '{pwd}': {strength['strength']} ({strength['score']}/{strength['max_score']})")
         except Exception as e:
-            print(f"   '{pwd}': ❌ {str(e)}")
+            print(f"   '{pwd}':  {str(e)}")
     
     # Test weak passwords
     print("\n   Weak password testing:")
@@ -183,10 +183,10 @@ def main():
             compressor.change_password(pwd)
             print(f"   '{pwd}': Should not be accepted!")
         except Exception as e:
-            print(f"   '{pwd}': ❌ Rejected - {str(e)}")
+            print(f"   '{pwd}':  Rejected - {str(e)}")
     
     print()
-    print("🎉 Tests completed!")
+    print(" Tests completed!")
     
     return 0
 

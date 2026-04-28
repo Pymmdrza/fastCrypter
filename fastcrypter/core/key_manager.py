@@ -173,7 +173,6 @@ class KeyManager:
     def _derive_scrypt(self, password: str, salt: bytes, key_length: int) -> bytes:
         """Derive key using Scrypt."""
         kdf = Scrypt(
-            algorithm=hashes.SHA256(),
             length=key_length,
             salt=salt,
             n=2**14,  # CPU/memory cost parameter
@@ -256,7 +255,8 @@ class KeyManager:
         for count in frequencies.values():
             probability = count / length
             if probability > 0:
-                entropy -= probability * (probability.bit_length() - 1)
+                import math
+                entropy -= probability * math.log2(probability)
         
         return entropy
     

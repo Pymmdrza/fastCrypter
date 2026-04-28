@@ -9,15 +9,15 @@ import sys
 import os
 import tempfile
 
-# Add the parent directory to the path so we can import encrypter
+# Add the parent directory to the path so we can import fastcrypter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from encrypter import FileEncryptor
+from fastcrypter import FileEncryptor
 
 
 def main():
     """Main file encryption test."""
-    print("📁 File Encryption Testing")
+    print(" File Encryption Testing")
     print("=" * 40)
     
     # Create temporary test file
@@ -43,7 +43,7 @@ def main():
     decrypted_file = original_file + '.dec'
     
     try:
-        print(f"📝 Original file: {os.path.basename(original_file)}")
+        print(f" Original file: {os.path.basename(original_file)}")
         print(f"   Size: {len(test_content.encode('utf-8'))} bytes")
         print()
         
@@ -51,10 +51,10 @@ def main():
         encryptor = FileEncryptor(password=password)
         
         # Encrypt file
-        print("🔐 Encrypting file...")
+        print(" Encrypting file...")
         encrypt_stats = encryptor.encrypt_file(original_file, encrypted_file)
         
-        print("✅ Encryption successful:")
+        print(" Encryption successful:")
         print(f"   Encrypted file: {os.path.basename(encrypted_file)}")
         print(f"   Original size: {encrypt_stats['original_size']} bytes")
         print(f"   Encrypted size: {encrypt_stats['encrypted_size']} bytes")
@@ -62,10 +62,10 @@ def main():
         print()
         
         # Decrypt file
-        print("🔓 Decrypting file...")
+        print(" Decrypting file...")
         decrypt_stats = encryptor.decrypt_file(encrypted_file, decrypted_file)
         
-        print("✅ Decryption successful:")
+        print(" Decryption successful:")
         print(f"   Decrypted file: {os.path.basename(decrypted_file)}")
         print(f"   Encrypted size: {decrypt_stats['encrypted_size']} bytes")
         print(f"   Decrypted size: {decrypt_stats['decrypted_size']} bytes")
@@ -73,7 +73,7 @@ def main():
         print()
         
         # Verify content integrity
-        print("🔍 Verifying content integrity...")
+        print(" Verifying content integrity...")
         with open(original_file, 'r', encoding='utf-8') as f:
             original_content = f.read()
         
@@ -81,28 +81,28 @@ def main():
             decrypted_content = f.read()
         
         if original_content == decrypted_content:
-            print("✅ File content successfully recovered!")
+            print(" File content successfully recovered!")
         else:
-            print("❌ Error: File content does not match!")
+            print(" Error: File content does not match!")
             return 1
         
         print()
         
         # Test with wrong password
-        print("🚫 Testing wrong password...")
+        print(" Testing wrong password...")
         wrong_encryptor = FileEncryptor(password="WrongPassword123!")
         
         try:
             wrong_encryptor.decrypt_file(encrypted_file, decrypted_file + '.wrong')
-            print("❌ Error: Wrong password was accepted!")
+            print(" Error: Wrong password was accepted!")
             return 1
         except Exception as e:
-            print("✅ Wrong password correctly rejected")
+            print(" Wrong password correctly rejected")
         
         print()
         
         # Display file information
-        print("📊 Results summary:")
+        print(" Results summary:")
         print(f"   Original file: {os.path.getsize(original_file)} bytes")
         print(f"   Encrypted file: {os.path.getsize(encrypted_file)} bytes")
         print(f"   Decrypted file: {os.path.getsize(decrypted_file)} bytes")
@@ -112,12 +112,12 @@ def main():
         print(f"   Compression efficiency: {efficiency:.1f}%")
         
         print()
-        print("🎉 File encryption test completed successfully!")
+        print(" File encryption test completed successfully!")
         
         return 0
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f" Error: {e}")
         return 1
         
     finally:

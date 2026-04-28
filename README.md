@@ -1,62 +1,62 @@
-# 🚀 fastCrypter
+# fastCrypter
 
 **Professional Compression and Encryption Library with Native C/C++ Acceleration**
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![PyPI Version](https://img.shields.io/pypi/v/fastCrypter.svg)](https://pypi.org/project/fastCrypter/)
-[![Downloads](https://img.shields.io/pypi/dm/fastCrypter.svg)](https://pypi.org/project/fastCrypter/)
+[![PyPI Version](https://img.shields.io/pypi/v/fastcrypter.svg)](https://pypi.org/project/fastcrypter/)
+[![Downloads](https://img.shields.io/pypi/dm/fastcrypter.svg)](https://pypi.org/project/fastcrypter/)
 
 fastCrypter is a powerful Python library that combines advanced compression and encryption techniques with native C/C++ acceleration for maximum performance. It provides a comprehensive suite of tools for secure data handling, from simple file encryption to complex custom encoding schemes.
 
-## ✨ Key Features
+## Key Features
 
-### 🔐 **Advanced Encryption**
+### Advanced Encryption
 - **Multiple Algorithms**: AES-256-GCM, ChaCha20-Poly1305, RSA
 - **Secure Key Management**: PBKDF2, Argon2, secure random generation
 - **Digital Signatures**: RSA and ECC-based signing
 - **Custom Encoding**: User-defined character sets for obfuscation
 
-### 🗜️ **High-Performance Compression**
+### High-Performance Compression
 - **Multiple Formats**: ZLIB, LZMA, Brotli, custom RLE
 - **Adaptive Algorithms**: Automatic best-fit selection
 - **Native Acceleration**: C/C++ libraries for critical operations
 - **Memory Efficient**: Streaming support for large files
 
-### ⚡ **Native Performance**
+### Native Performance
 - **C/C++ Libraries**: Optimized crypto and hash operations
 - **SIMD Instructions**: Vectorized operations where available
 - **Cross-Platform**: Windows (.dll), Linux (.so), macOS (.dylib)
 - **Automatic Fallback**: Pure Python when native libs unavailable
 
-### 🛡️ **Security Features**
+### Security Features
 - **Secure Memory**: Protected key storage and cleanup
 - **Entropy Analysis**: Data randomness validation
 - **Side-Channel Protection**: Constant-time operations
 - **Audit Trail**: Comprehensive logging and validation
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
 ```bash
 # Install from PyPI
-pip install fastCrypter
+pip install fastcrypter
 
 # Install with development dependencies
-pip install fastCrypter[dev]
+pip install fastcrypter[dev]
 
 # Install with native compilation support
-pip install fastCrypter[native]
+pip install fastcrypter[native]
 ```
 
 ### Basic Usage
 
 ```python
-import fastCrypter
+import fastcrypter
 
 # Get the recommended compressor (automatically uses native acceleration if available)
-compressor = fastCrypter.get_recommended_compressor(password="your_secure_password")
+compressor = fastcrypter.get_recommended_compressor(password="your_secure_password")
 
 # Compress and encrypt data
 data = b"Your sensitive data here"
@@ -70,7 +70,7 @@ assert data == decrypted
 ### Custom Encoding Example
 
 ```python
-from fastCrypter import CustomEncoder
+from fastcrypter import CustomEncoder
 
 # Create custom encoder with your character set
 encoder = CustomEncoder(charset="abcdef98Xvbvii")
@@ -88,7 +88,7 @@ assert original == decoded
 ### File Encryption
 
 ```python
-from fastCrypter import FileEncryptor
+from fastcrypter import FileEncryptor
 
 # Initialize file encryptor
 encryptor = FileEncryptor(password="your_password")
@@ -100,9 +100,9 @@ encryptor.encrypt_file("document.pdf", "document.pdf.encrypted")
 encryptor.decrypt_file("document.pdf.encrypted", "document_restored.pdf")
 ```
 
-## 🔧 Native Compilation
+## Native Compilation
 
-fastCrypter includes C/C++ libraries for performance-critical operations:
+fastcrypter includes C/C++ libraries for performance-critical operations:
 
 ### Automatic Compilation
 
@@ -121,11 +121,11 @@ python build_native.py --release
 
 ```bash
 # Using Make (Linux/macOS)
-cd fastCrypter/native
+cd fastcrypter/native
 make all
 
 # Using MinGW (Windows)
-cd fastCrypter/native
+cd fastcrypter/native
 mingw32-make all
 ```
 
@@ -138,11 +138,11 @@ Native libraries provide significant performance improvements:
 - **Key Derivation**: 2-4x faster PBKDF2
 - **Compression**: 1.5-2x faster RLE compression
 
-## 📊 Performance Benchmarks
+## Performance Benchmarks
 
 ```python
 # Run comprehensive benchmarks
-results = fastCrypter.benchmark_available_features(data_size=1024*1024)
+results = fastcrypter.benchmark_available_features(data_size=1024*1024)
 print(f"Native acceleration: {results['performance']['native']['available']}")
 print(f"Speedup factor: {results['performance'].get('speedup', 'N/A')}")
 ```
@@ -152,12 +152,12 @@ Example results on modern hardware:
 - **Enhanced Mode**: ~150 MB/s with native acceleration
 - **Memory Usage**: <100MB for 1GB files (streaming)
 
-## 🔍 Advanced Features
+## Advanced Features
 
 ### Enhanced Compressor
 
 ```python
-from fastCrypter import EnhancedCompressor
+from fastcrypter import EnhancedCompressor
 
 # Create enhanced compressor with native acceleration
 compressor = EnhancedCompressor(
@@ -168,13 +168,13 @@ compressor = EnhancedCompressor(
 
 # Check if native libraries are available
 if compressor.is_native_available():
-    print("🚀 Native acceleration enabled!")
+    print("Native acceleration enabled!")
 ```
 
 ### Custom Algorithms
 
 ```python
-from fastCrypter.core import Compressor, CompressionAlgorithmType
+from fastcrypter.core import Compressor, CompressionAlgorithmType
 
 # Use specific compression algorithm
 compressor = Compressor(
@@ -186,7 +186,7 @@ compressor = Compressor(
 ### Secure Key Management
 
 ```python
-from fastCrypter import KeyManager
+from fastcrypter import KeyManager
 
 # Generate secure keys
 key_manager = KeyManager()
@@ -197,16 +197,16 @@ encryption_key = key_manager.derive_key(master_key, b"encryption", 32)
 signing_key = key_manager.derive_key(master_key, b"signing", 32)
 ```
 
-## 🧪 Testing
+## Testing
 
-fastCrypter includes comprehensive tests:
+fastcrypter includes comprehensive tests:
 
 ```bash
 # Run all tests
 python -m pytest tests/ -v
 
 # Run with coverage
-python -m pytest tests/ --cov=fastCrypter --cov-report=html
+python -m pytest tests/ --cov=fastcrypter --cov-report=html
 
 # Run performance tests
 python -m pytest tests/test_performance.py -v
@@ -215,7 +215,7 @@ python -m pytest tests/test_performance.py -v
 python final_test.py
 ```
 
-## 🔧 Development
+## Development
 
 ### Setting Up Development Environment
 
@@ -238,22 +238,22 @@ python -m pytest
 
 ```bash
 # Format code
-black fastCrypter/ tests/
+black fastcrypter/ tests/
 
 # Lint code
-flake8 fastCrypter/ tests/
+flake8 fastcrypter/ tests/
 
 # Type checking
-mypy fastCrypter/
+mypy fastcrypter/
 ```
 
-## 📚 Documentation
+## Documentation
 
 - **API Reference**: [ [Document](https://fastcrypter.readthedocs.io) ]
 - **Examples**: See `examples/` directory [Examples](https://github.com/Pymmdrza/fastCrypter/tree/main/examples)
 - **Performance Guide**: [Performance Optimization](docs/performance.md)
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
@@ -266,18 +266,18 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 5. Ensure all tests pass
 6. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Cryptography**: Built on industry-standard libraries
 - **Performance**: Inspired by high-performance computing practices
 - **Security**: Following OWASP and NIST guidelines
 - **Community**: Thanks to all contributors and users
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/Pymmdrza/fastCrypter/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/Pymmdrza/fastCrypter/discussions)
@@ -285,4 +285,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**`fastCrypter`** - Making encryption fast, secure, and accessible! 🚀🔐 
+**fastcrypter** - Making encryption fast, secure, and accessible! 

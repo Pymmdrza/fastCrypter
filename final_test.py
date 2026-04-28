@@ -14,7 +14,7 @@ if sys.platform.startswith("win"):
     except Exception:
         pass
 
-from fastCrypterer import SecureCompressor
+from fastcrypter import SecureCompressor
 import time
 
 def test_basic_functionality():
@@ -53,7 +53,7 @@ def test_custom_encoding():
     print("\nTesting custom encoding...")
     
     try:
-        from fastCrypterer import CustomEncoder
+        from fastcrypter import CustomEncoder
         
         # Test with custom charset
         charset = "abcdef98Xvbvii"
@@ -83,7 +83,7 @@ def test_enhanced_features():
     print("\nTesting enhanced features...")
     
     try:
-        from fastCrypterer import EnhancedCompressor, ENHANCED_AVAILABLE, NATIVE_SUPPORT
+        from fastcrypter import EnhancedCompressor, ENHANCED_AVAILABLE, NATIVE_SUPPORT
         
         print(f"Enhanced compressor available: {ENHANCED_AVAILABLE}")
         print(f"Native support available: {NATIVE_SUPPORT}")
@@ -109,16 +109,16 @@ def test_package_info():
     """Test package information."""
     print("\nTesting package information...")
     
-    import fastCrypterer
+    import fastcrypter
     
-    print(f"   Package: {fastCrypterer.__name__}")
-    print(f"   Version: {fastCrypterer.__version__}")
-    print(f"   Author: {fastCrypterer.__author__}")
-    print(f"   Email: {fastCrypterer.__email__}")
-    print(f"   License: {fastCrypterer.__license__}")
+    print(f"   Package: {fastcrypter.__name__}")
+    print(f"   Version: {fastcrypter.__version__}")
+    print(f"   Author: {fastcrypter.__author__}")
+    print(f"   Email: {fastcrypter.__email__}")
+    print(f"   License: {fastcrypter.__license__}")
     
     # Test package info
-    info = fastCrypterer.get_version_info()
+    info = fastcrypter.get_version_info()
     print(f"   URL: {info['url']}")
     print(f"   Features: {list(info['features'].keys())}")
     

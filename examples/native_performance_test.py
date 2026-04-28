@@ -12,11 +12,11 @@ import time
 import secrets
 from typing import Dict, Any
 
-# Add the parent directory to the path so we can import encrypter
+# Add the parent directory to the path so we can import fastcrypter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from encrypter.core.enhanced_compressor import EnhancedCompressor
-from encrypter import SecureCompressor
+from fastcrypter.core.enhanced_compressor import EnhancedCompressor
+from fastcrypter import SecureCompressor
 
 
 def format_time(seconds: float) -> str:
@@ -50,7 +50,7 @@ def benchmark_operation(operation, iterations: int = 100) -> float:
 def main():
     """Test native library performance."""
     
-    print("🚀 Native Library Performance Test for Encrypter Package")
+    print(" Native Library Performance Test for Encrypter Package")
     print("=" * 70)
     
     # Test data sizes
@@ -58,12 +58,12 @@ def main():
     password = "MySecurePassword123!"
     custom_charset = "abcdef98Xvbvii"
     
-    print(f"🔑 Password: {password}")
-    print(f"🔤 Custom charset: {custom_charset}")
+    print(f" Password: {password}")
+    print(f" Custom charset: {custom_charset}")
     print()
     
     # Initialize compressors
-    print("🔧 Initializing compressors...")
+    print(" Initializing compressors...")
     
     try:
         # Enhanced compressor with native libraries
@@ -80,12 +80,12 @@ def main():
             use_fast_extensions=False
         )
         
-        print("✅ Enhanced compressor (with native libraries)")
-        print("✅ Standard compressor (pure Python)")
+        print(" Enhanced compressor (with native libraries)")
+        print(" Standard compressor (pure Python)")
         
         # Check native library availability
         native_info = enhanced_compressor.get_native_info()
-        print(f"\n📊 Native Library Status:")
+        print(f"\n Native Library Status:")
         print(f"   Support available: {native_info['native_support']}")
         print(f"   Libraries loaded: {native_info['native_available']}")
         
@@ -93,22 +93,22 @@ def main():
             available_libs = native_info.get('available_libraries', [])
             print(f"   Available libraries: {', '.join(available_libs)}")
         else:
-            print("   ⚠️  No native libraries available - will compare Python implementations")
+            print("     No native libraries available - will compare Python implementations")
         
         print()
         
     except Exception as e:
-        print(f"❌ Failed to initialize compressors: {e}")
+        print(f" Failed to initialize compressors: {e}")
         return 1
     
     # Performance comparison for different data sizes
-    print("📈 Performance Comparison")
+    print(" Performance Comparison")
     print("-" * 70)
     
     results = {}
     
     for size in test_sizes:
-        print(f"\n🧪 Testing with {format_size(size)} data...")
+        print(f"\n Testing with {format_size(size)} data...")
         
         # Generate test data
         test_data = secrets.token_bytes(size)
@@ -121,7 +121,7 @@ def main():
         }
         
         # Test compression and encryption
-        print("   📦 Compression + Encryption...")
+        print("    Compression + Encryption...")
         
         # Enhanced compressor
         def enhanced_compress():
@@ -148,7 +148,7 @@ def main():
         print(f"      Speedup: {size_results['speedup']['compression']:.2f}x")
         
         # Test decompression and decryption
-        print("   📂 Decryption + Decompression...")
+        print("    Decryption + Decompression...")
         
         # Enhanced compressor
         def enhanced_decompress():
@@ -171,7 +171,7 @@ def main():
         print(f"      Speedup: {size_results['speedup']['decompression']:.2f}x")
         
         # Test custom encoding
-        print("   🔤 Custom Character Encoding...")
+        print("    Custom Character Encoding...")
         
         # Enhanced compressor
         def enhanced_custom():
@@ -208,13 +208,13 @@ def main():
             enhanced_custom_decoded == standard_custom_decoded
         )
         
-        print(f"   ✅ Correctness: {'PASS' if correctness else 'FAIL'}")
+        print(f"    Correctness: {'PASS' if correctness else 'FAIL'}")
         
         results[size] = size_results
     
     # Native library specific benchmarks
     if enhanced_compressor.is_native_available():
-        print(f"\n🔬 Native Library Specific Benchmarks")
+        print(f"\n Native Library Specific Benchmarks")
         print("-" * 70)
         
         try:
@@ -222,7 +222,7 @@ def main():
                 data_size=4096, iterations=100
             )
             
-            print("📊 Detailed Native vs Python Comparison:")
+            print(" Detailed Native vs Python Comparison:")
             
             if 'compression' in native_benchmark:
                 comp = native_benchmark['compression']
@@ -246,10 +246,10 @@ def main():
                 print(f"      Speedup: {kdf['speedup']:.2f}x")
             
         except Exception as e:
-            print(f"❌ Native benchmark failed: {e}")
+            print(f" Native benchmark failed: {e}")
     
     # Summary
-    print(f"\n📋 Performance Summary")
+    print(f"\n Performance Summary")
     print("=" * 70)
     
     avg_speedups = {
@@ -271,26 +271,26 @@ def main():
     print(f"   Custom Encoding: {avg_speedups['custom_encoding']:.2f}x faster")
     
     # Recommendations
-    print(f"\n💡 Recommendations:")
+    print(f"\n Recommendations:")
     
     if enhanced_compressor.is_native_available():
-        print("✅ Native libraries are available and working!")
+        print(" Native libraries are available and working!")
         print("   - Use EnhancedCompressor for maximum performance")
         print("   - Native acceleration provides significant speed improvements")
         print("   - Especially beneficial for large data processing")
     else:
-        print("⚠️  Native libraries are not available")
+        print("  Native libraries are not available")
         print("   - Install a C/C++ compiler (gcc, clang, or MSVC)")
         print("   - Run: python build_native.py")
         print("   - This will provide 2-10x performance improvements")
     
-    print(f"\n🎯 Use Cases:")
+    print(f"\n Use Cases:")
     print("   - Real-time data encryption: Use native libraries")
     print("   - Batch processing: Native libraries highly recommended")
     print("   - Custom character encoding: Significant native speedup")
     print("   - Memory-constrained environments: Both work well")
     
-    print(f"\n🎉 Performance test completed!")
+    print(f"\n Performance test completed!")
     
     return 0
 
